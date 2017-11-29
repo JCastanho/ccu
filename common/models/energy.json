@@ -1,0 +1,40 @@
+{
+  "name": "energy",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "energy_id": {
+      "type": "number",
+      "id": true,
+      "required": true
+    },
+    "producer_id": {
+      "type": "number",
+      "required": true
+    },
+    "quantity": {
+      "type": "string"
+    },
+    "packName": {
+      "type": "string"
+    },
+    "packDescript": {
+      "type": "string"
+    },
+    "posted_time": {
+      "type": "date",
+      "required": true
+    },
+    "holder": {
+      "type": "number",
+      "default": null
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
