@@ -57,4 +57,33 @@ module.exports = function(Customers) {
 		}
 		);
 
+	Customers.activePack = function(customer_id, cb){
+		var filter = { include : [ 'energy'] };
+		var capp = Customers.app;
+		var e = capp.models.Energy;
+		e.find({where: {and: [{customer_id: customer_id}, {active : 1}]}}, function(err, instance) {
+			var response = instance;
+			cb(null, response);
+			console.log(response);
+		})
+		
+	}
+
+	Customers.remoteMethod(
+		'activePack',
+		{
+			http: {path: '/activePack', verb: 'get'},
+			accepts: {arg: 'customer_id', type: 'number', http: {source: 'query'}},
+			returns: [
+			{arg: 'energy_id', type: 'number'},
+			{arg: 'producer_id', type: 'number'},
+			{arg: 'quatity', type: 'string'},
+			{arg: 'packName', type: 'string'},
+			{arg: 'packDescript', type: 'string'},
+			{arg: 'posted_time', type: 'date'},
+			{arg: 'holder', type: 'number'}
+			]
+		}
+		);
+
 };
